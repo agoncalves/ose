@@ -1,11 +1,13 @@
 package fr.mertzell.ose.modele;
 
 import java.util.ArrayList ;
+import java.util.Iterator;
 
 
-public class PlanSalle {
+public class PlanSalle implements Iterable<PlanSalle.Poste> {
 	private String nom ;
 	private ArrayList<Poste> lesPostes = new ArrayList<Poste>() ;
+
 
 	public PlanSalle(String nom) {
 		super();
@@ -89,8 +91,12 @@ public class PlanSalle {
 		}
 	}
 	
-	public ArrayList<Poste> listerPostes(){
+	/*public ArrayList<Poste> listerPostes(){
 		return this.lesPostes ;
+	}*/
+	
+	public Iterator<PlanSalle.Poste> iterator(){
+		return lesPostes.iterator();
 	}
 	
 	private void rechercherPostesVisibles(){

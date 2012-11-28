@@ -144,9 +144,9 @@ public class FenetrePrincipale extends JFrame {
 		return this.lePlan ;
 	}
 	
-	public void visualiserPlan(){
+	/*public void visualiserPlan(){
 		this.lePlan.repaint() ;
-	}
+	}*/
 	
 	public void afficherMenuContextuel(int x,int y){
 		Position position = new Position(y/Parametres.HAUTEUR_RANGEE,x/Parametres.LARGEUR_TRAVEE) ;
@@ -161,7 +161,7 @@ public class FenetrePrincipale extends JFrame {
 			this.menuOrientation.setEnabled(false) ;
 		}
 		menuActions.show((Component)lePlan,x,y) ;
-	}
+	}   
 	
 	public JMenu getMenuOrientation() {
 		return menuOrientation;
@@ -202,7 +202,7 @@ public class FenetrePrincipale extends JFrame {
 	public void setItemModifierOuest(JMenuItem itemModifierOuest) {
 		this.itemModifierOuest = itemModifierOuest;
 	}
-	public class Plan extends JPanel {
+	public class Plan extends JPanel implements Observateur {
 
 		private static final long serialVersionUID = 1L;
 		
@@ -212,7 +212,17 @@ public class FenetrePrincipale extends JFrame {
 			super() ;
 			this.modele = modele ;
 			this.setBackground(Color.white) ;
+			
+			//***********
+			modele.ajouterObservateur(this);
+			this.actualiser();
+			//***********
 		}
+		//-----------------------------
+		public void actualiser(){
+			this.repaint();
+		}
+		//-----------------------------
 			
 		public void paintComponent(Graphics g){
 			super.paintComponent(g) ;

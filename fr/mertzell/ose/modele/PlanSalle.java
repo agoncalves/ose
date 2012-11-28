@@ -4,7 +4,7 @@ import java.util.ArrayList ;
 import java.util.Iterator;
 
 
-public class PlanSalle implements Iterable<PlanSalle.Poste> {
+public class PlanSalle extends Observe implements Iterable<PlanSalle.Poste> {
 	private String nom ;
 	private ArrayList<Poste> lesPostes = new ArrayList<Poste>() ;
 
@@ -45,10 +45,12 @@ public class PlanSalle implements Iterable<PlanSalle.Poste> {
 		int indice = this.rechercherPoste(position) ;
 		lesPostes.get(indice).setOrientation(orientation);
 		this.rechercherPostesVisibles() ;
+		this.notifier();
 	}
 	public void ajouterPoste(Position position,int orientation){
 		lesPostes.add(new Poste(position,orientation)) ;
 		this.rechercherPostesVisibles() ;
+		this.notifier();
 	}
 	
 	public void retirerPoste(Position position){
@@ -57,6 +59,7 @@ public class PlanSalle implements Iterable<PlanSalle.Poste> {
 			lesPostes.remove(indice) ;
 			this.rechercherPostesVisibles() ;
 		}
+		this.notifier();
 	}
 	
 	public void visualiserPostes(){

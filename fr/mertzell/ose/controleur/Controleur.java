@@ -70,7 +70,7 @@ public class Controleur implements MouseListener, ActionListener {
 		else if(source == vue.getItemModifierOuest()){
 			modele.modifierPoste(this.position,Orientation.OUEST) ;
 		}
-		vue.visualiserPlan() ;
+		//vue.visualiserPlan() ;
 	}
 	
 	public void mouseClicked(MouseEvent evt){
